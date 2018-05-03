@@ -1,4 +1,4 @@
-package com.newscenter.first.viewmodel;
+package com.newscenter.first.viewmodel.base;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -7,6 +7,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.newscenter.first.datacenter.DataRepository;
+import com.newscenter.first.viewmodel.base.IRequest;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -26,12 +27,12 @@ import static com.newscenter.first.util.Constants.PATH_URL;
  * Created by yuzhijun on 2018/4/12.
  */
 
-public class BaseViewModel<T> extends AndroidViewModel implements IRequest<T>{
+public class BaseViewModel<T> extends AndroidViewModel implements IRequest<T> {
     private static final Pattern pattern = Pattern.compile("\\{(.*?)\\}");
     protected Application mApplication;
     //生命周期观察的数据
     private MutableLiveData<T> liveObservableData = new MutableLiveData<>();
-    private MutableLiveData<Throwable> errorObservableData = new MutableLiveData<>();
+    protected MutableLiveData<Throwable> errorObservableData = new MutableLiveData<>();
     public final CompositeDisposable mDisposable = new CompositeDisposable();
 
     private static final MutableLiveData ABSENT = new MutableLiveData();

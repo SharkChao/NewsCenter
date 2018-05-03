@@ -19,11 +19,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-import com.newscenter.com.newscenter.R;
+import com.newscenter.first.R;
 import com.newscenter.first.annotation.ContentView;
 import com.newscenter.first.util.CommonUtil;
 import com.newscenter.first.util.DensityUtil;
-import com.newscenter.first.viewmodel.BaseViewModel;
+import com.newscenter.first.viewmodel.base.BaseViewModel;
 import com.newscenter.first.views.LoadingView;
 
 import java.lang.reflect.ParameterizedType;

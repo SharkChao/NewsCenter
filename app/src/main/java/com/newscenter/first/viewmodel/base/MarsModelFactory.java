@@ -1,4 +1,4 @@
-package com.newscenter.first.viewmodel;
+package com.newscenter.first.viewmodel.base;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;

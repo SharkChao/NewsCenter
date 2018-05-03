@@ -16,11 +16,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.newscenter.com.newscenter.R;
+import com.newscenter.first.R;
 import com.newscenter.first.annotation.ContentView;
 import com.newscenter.first.util.CommonUtil;
 import com.newscenter.first.util.DensityUtil;
-import com.newscenter.first.viewmodel.BaseViewModel;
+import com.newscenter.first.viewmodel.base.BaseViewModel;
 
 import java.lang.reflect.ParameterizedType;
 
@@ -31,7 +31,7 @@ import java.lang.reflect.ParameterizedType;
  */
 public abstract class BaseFragment<T extends ViewModel> extends Fragment {
 
-    public static int ivBack=R.mipmap.wn_iv_top_back;
+    public static int ivBack= R.mipmap.wn_iv_top_back;
     private TextView mTvTitle;
     private ImageView mBtnLeft;
     private ImageView mBtnRight;

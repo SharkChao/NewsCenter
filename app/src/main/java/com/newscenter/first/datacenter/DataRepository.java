@@ -1,7 +1,9 @@
 package com.newscenter.first.datacenter;
 
 
+import com.newscenter.first.datacenter.network.ApiService;
 import com.newscenter.first.datacenter.network.ApiServiceModule;
+import com.newscenter.first.model.User;
 import com.newscenter.first.util.GsonHelper;
 import com.newscenter.first.util.SwitchSchedulers;
 
@@ -16,9 +18,11 @@ import okhttp3.ResponseBody;
  */
 
 public class DataRepository {
+    private static ApiService sService = ApiServiceModule.getInstance().getNetworkService();
+
 
     public static <T> Flowable getDynamicData(String url, final Type clazz) {
-        return ApiServiceModule.getInstance().getNetworkService()
+        return sService
                 .getDynamicData(url)
                 .compose(SwitchSchedulers.applySchedulers())
                 .map(new Function<ResponseBody, T>() {
@@ -28,6 +32,17 @@ public class DataRepository {
                     }
                 });
     }
+
+    public static Flowable getLoginData(User user){
+        return sService.getLoginData(user)
+                .compose(SwitchSchedulers.applySchedulers());
+    }
+    public static Flowable getRegisterData(User user){
+        return sService.getRegisterData(user)
+                .compose(SwitchSchedulers.applySchedulers());
+    }
+
+
 
 
 }

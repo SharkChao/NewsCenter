@@ -17,7 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.newscenter.com.newscenter.R;
+import com.newscenter.first.R;
 import com.newscenter.first.base.MarsApplication;
 
 import java.io.ByteArrayOutputStream;
