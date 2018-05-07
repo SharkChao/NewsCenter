@@ -30,7 +30,7 @@
                 android:maxEms="5"
                 android:scrollHorizontally="true"
                 android:text=""
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_normal" />
 
             <ImageView

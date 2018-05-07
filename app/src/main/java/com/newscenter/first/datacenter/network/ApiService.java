@@ -3,14 +3,19 @@ package com.newscenter.first.datacenter.network;
 
 import com.newscenter.first.model.GirlsData;
 import com.newscenter.first.model.HttpResult;
+import com.newscenter.first.model.News;
 import com.newscenter.first.model.User;
+
+import java.util.List;
 
 import io.reactivex.Flowable;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 /**
@@ -24,9 +29,12 @@ public interface ApiService<T> {
     @GET ("api/data/福利/{size}/{index}")
     Flowable<GirlsData> getFuliData(@Path("size") String size, @Path("index") String index);
 
-    @POST("/")
-    Flowable<HttpResult> getLoginData(@Body User user);
+    @POST("user/login")
+    Flowable<HttpResult<User>> getLoginData(@Body User user);
 
     @POST("user/register")
-    Flowable<HttpResult> getRegisterData(@Body User user);
+    Flowable<HttpResult<User>> getRegisterData(@Body User user);
+
+    @GET("news")
+    Flowable<HttpResult<List<News>>> getNewsData(@Query("type") String type,@Query("isrefresh")boolean isRefresh);
 }

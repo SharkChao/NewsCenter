@@ -3,11 +3,15 @@ package com.newscenter.first.datacenter;
 
 import com.newscenter.first.datacenter.network.ApiService;
 import com.newscenter.first.datacenter.network.ApiServiceModule;
+import com.newscenter.first.datacenter.network.HttpResultFunc;
+import com.newscenter.first.model.News;
 import com.newscenter.first.model.User;
 import com.newscenter.first.util.GsonHelper;
 import com.newscenter.first.util.SwitchSchedulers;
 
 import java.lang.reflect.Type;
+import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Flowable;
 import io.reactivex.functions.Function;
@@ -35,14 +39,21 @@ public class DataRepository {
 
     public static Flowable getLoginData(User user){
         return sService.getLoginData(user)
-                .compose(SwitchSchedulers.applySchedulers());
+                .compose(SwitchSchedulers.applySchedulers())
+                .map(new HttpResultFunc<User>());
     }
     public static Flowable getRegisterData(User user){
         return sService.getRegisterData(user)
-                .compose(SwitchSchedulers.applySchedulers());
+                .compose(SwitchSchedulers.applySchedulers())
+                .map(new HttpResultFunc<User>());
+
     }
 
-
+    public static Flowable getNewsData(String type,boolean isRefresh){
+        return sService.getNewsData(type,isRefresh)
+                .compose(SwitchSchedulers.applySchedulers())
+                .map(new HttpResultFunc<List<News>>());
+    }
 
 
 }

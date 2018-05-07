@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+    </data>
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+            <!--app:layout_scrollFlags="scroll|enterAlways"-->
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:gravity="center_vertical"
+                    app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="scroll"
+                   >
+                    <TextView
+                        android:id="@+id/toolbar_title"
+                        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:maxEms="8"
+                        android:scrollHorizontally="true"
+                        android:text="首页"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/font_large" />
+                </android.support.v7.widget.Toolbar>
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabSelectedTextColor="#000000"
+                app:tabTextColor="#a1a3a6"
+                app:tabMode="scrollable"
+                app:tabBackground="@android:color/white"
+                app:tabIndicatorColor="#D13A2D"
+                />
+        </android.support.design.widget.AppBarLayout>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

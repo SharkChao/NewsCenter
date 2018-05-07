@@ -8,6 +8,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.newscenter.first.R;
 import com.newscenter.first.annotation.ContentView;
 import com.newscenter.first.base.BaseActivity;
+import com.newscenter.first.util.CommonUtil;
+import com.newscenter.first.util.Constants;
 import com.newscenter.first.viewmodel.base.BaseViewModel;
 
 import java.util.concurrent.TimeUnit;
@@ -42,9 +44,16 @@ public class SplashActivity extends BaseActivity<BaseViewModel>{
             @Override
             public void accept(Integer integer) throws Exception {
                 if (integer == 0){
-                    ARouter.getInstance()
-                            .build("/center/RegisterActivity")
-                            .navigation();
+                    String user = CommonUtil.getShardPStringByKey(Constants.IS_LOGIN);
+                    if (CommonUtil.isStrEmpty(user)){
+                        ARouter.getInstance()
+                                .build("/center/LoginActivity")
+                                .navigation();
+                    }else {
+                        ARouter.getInstance()
+                                .build("/center/HomeActivity")
+                                .navigation();
+                    }
                     finish();
 
                 }

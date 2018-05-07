@@ -14,10 +14,8 @@ import com.newscenter.first.R;
 import com.newscenter.first.annotation.ContentView;
 import com.newscenter.first.base.BaseActivity;
 import com.newscenter.first.databinding.ActivityRegisterBinding;
-import com.newscenter.first.model.HttpResult;
 import com.newscenter.first.model.User;
 import com.newscenter.first.util.CommonUtil;
-import com.newscenter.first.viewmodel.LoginViewModel;
 import com.newscenter.first.viewmodel.RegisterViewModel;
 
 @Route(path = "/center/RegisterActivity")
@@ -47,9 +45,13 @@ public class RegisterActivity extends BaseActivity<RegisterViewModel>{
     @Override
     public void initData(ViewModel baseViewModel) {
         mViewModel = (RegisterViewModel) baseViewModel;
-        mViewModel.registerData.observe(this, httpResult -> {
-            if (httpResult != null && httpResult.getCode() > 0){
-                Toast.makeText(RegisterActivity.this, "注册成功!", Toast.LENGTH_SHORT).show();
+        mViewModel.registerData.observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(@Nullable User user) {
+                if (user != null){
+                    Toast.makeText(RegisterActivity.this, "注册成功!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
     }

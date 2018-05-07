@@ -15,13 +15,13 @@ import io.reactivex.subscribers.DefaultSubscriber;
 import io.reactivex.subscribers.DisposableSubscriber;
 
 public class RegisterViewModel extends BaseViewModel<HttpResult>{
-    public MutableLiveData<HttpResult> registerData = new MutableLiveData<>();
+    public MutableLiveData<User> registerData = new MutableLiveData<>();
     public RegisterViewModel(@NonNull Application application) {
         super(application);
     }
-    public LiveData<HttpResult> getRegisterController(User user){
+    public LiveData<User> getRegisterController(User user){
         DataRepository.getRegisterData(user)
-                .subscribe(new CommonDisposableSubscriber<HttpResult>(registerData,errorObservableData));
+                .subscribe(new CommonDisposableSubscriber<User>(registerData,errorObservableData,""));
         return registerData;
     }
 }

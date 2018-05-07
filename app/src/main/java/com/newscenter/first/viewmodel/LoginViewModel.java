@@ -12,18 +12,16 @@ import com.newscenter.first.model.User;
 import com.newscenter.first.viewmodel.base.BaseViewModel;
 import com.newscenter.first.viewmodel.base.CommonDisposableSubscriber;
 
-import io.reactivex.subscribers.DisposableSubscriber;
-
-public class LoginViewModel extends BaseViewModel<User>{
-    private MutableLiveData<HttpResult>userData = new MutableLiveData<>();
+public class LoginViewModel extends BaseViewModel<HttpResult<User>>{
+    public MutableLiveData<User> userData = new MutableLiveData<>();
     public LoginViewModel(@NonNull Application application) {
         super(application);
     }
 
     @SuppressLint("CheckResult")
-    public LiveData<HttpResult> loginController(User user){
+    public LiveData<User> loginController(User user){
         DataRepository.getLoginData(user)
-                .subscribeWith(new CommonDisposableSubscriber<HttpResult>(userData,errorObservableData));
+                .subscribeWith(new CommonDisposableSubscriber<User>(userData,errorObservableData,""));
         return userData;
     }
 

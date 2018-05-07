@@ -17,8 +17,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ApiServiceModule {
-    private static final int DEFAULT_TIMEOUT = 5;
-    private static final int READ_TIMEOUT = 3;
+    private static final int DEFAULT_TIMEOUT = 5000;
+    private static final int READ_TIMEOUT = 3000;
     private static ApiServiceModule mInstance;
     private ApiServiceModule(){
 

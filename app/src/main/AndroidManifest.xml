@@ -30,6 +30,18 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".ui.LoginActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.NewsDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

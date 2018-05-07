@@ -148,6 +148,18 @@ public abstract class BaseActivity<T extends ViewModel> extends AppCompatActivit
         mBtnRight.setLayoutParams(linearParams);
         mLlRight.setOnClickListener(listener);
     }
+    protected void setRightTitleAndIcon(String title, @DrawableRes int icon){
+        if (title != null && !"".equalsIgnoreCase(title)){
+            mTvRight.setVisibility(View.VISIBLE);
+            mTvRight.setText(title);
+        }
+        mBtnRight.setVisibility(View.VISIBLE);
+        mBtnRight.setImageResource(icon);
+        ViewGroup.LayoutParams linearParams = mBtnRight.getLayoutParams();
+        linearParams.height = DensityUtil.dip2px(this,22);
+        linearParams.width = DensityUtil.dip2px(this,22);
+        mBtnRight.setLayoutParams(linearParams);
+    }
     protected  void setLeftTitle(String title, View.OnClickListener listener){
         if (title != null && !"".equalsIgnoreCase(title)){
             mTvLeft.setVisibility(View.VISIBLE);
