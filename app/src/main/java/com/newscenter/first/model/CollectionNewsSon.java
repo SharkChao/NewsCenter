@@ -1,14 +1,11 @@
 package com.newscenter.first.model;
 
+import com.chad.library.adapter.base.entity.AbstractExpandableItem;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
-import java.io.Serializable;
+public class CollectionNewsSon extends AbstractExpandableItem<CollectionNewsSon> implements MultiItemEntity {
 
-public class News implements MultiItemEntity,Serializable{
-
-    public static final int TYPE_IMG0 = 0;
-    public static final int TYPE_IMG1 = 1;
-    public static final int TYPE_IMG3 = 3;
+    private boolean isChecked;
     private String title;
     private String category;
     private int layout_type;
@@ -20,6 +17,31 @@ public class News implements MultiItemEntity,Serializable{
     private String thumbnail_pic_s;
     private String thumbnail_pic_s02;
     private String thumbnail_pic_s03;
+    @Override
+    public int getItemType() {
+        return 1;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
+    @Override
+    public int getLevel() {
+        return 1;
+    }
 
     public String getCategory() {
         return category;
@@ -29,12 +51,12 @@ public class News implements MultiItemEntity,Serializable{
         this.category = category;
     }
 
-    public String getTitle() {
-        return title;
+    public int getLayout_type() {
+        return layout_type;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setLayout_type(int layout_type) {
+        this.layout_type = layout_type;
     }
 
     public String getDate() {
@@ -61,6 +83,22 @@ public class News implements MultiItemEntity,Serializable{
         this.url = url;
     }
 
+    public String getCollectDate() {
+        return collectDate;
+    }
+
+    public void setCollectDate(String collectDate) {
+        this.collectDate = collectDate;
+    }
+
+    public String getHistoryDate() {
+        return historyDate;
+    }
+
+    public void setHistoryDate(String historyDate) {
+        this.historyDate = historyDate;
+    }
+
     public String getThumbnail_pic_s() {
         return thumbnail_pic_s;
     }
@@ -83,34 +121,5 @@ public class News implements MultiItemEntity,Serializable{
 
     public void setThumbnail_pic_s03(String thumbnail_pic_s03) {
         this.thumbnail_pic_s03 = thumbnail_pic_s03;
-    }
-
-    public int getLayout_type() {
-        return layout_type;
-    }
-
-    public void setLayout_type(int layout_type) {
-        this.layout_type = layout_type;
-    }
-
-    @Override
-    public int getItemType() {
-        return layout_type;
-    }
-
-    public String getCollectDate() {
-        return collectDate;
-    }
-
-    public void setCollectDate(String collectDate) {
-        this.collectDate = collectDate;
-    }
-
-    public String getHistoryDate() {
-        return historyDate;
-    }
-
-    public void setHistoryDate(String historyDate) {
-        this.historyDate = historyDate;
     }
 }

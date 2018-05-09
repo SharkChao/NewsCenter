@@ -5,8 +5,10 @@ import android.databinding.ViewDataBinding;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.newscenter.first.R;
 import com.newscenter.first.annotation.ContentView;
 import com.newscenter.first.base.BaseFragment;
@@ -33,6 +35,8 @@ public class MineFragment extends BaseFragment<BaseViewModel> {
     WaveView mWaveView;
     private WaveHelper mWaveHelper;
     private TextView mTvSkin;
+    private LinearLayout mLlHistory;
+    private LinearLayout mLlCollection;
 
     @Override
     protected void handleArguments(Bundle arguments) {
@@ -52,6 +56,8 @@ public class MineFragment extends BaseFragment<BaseViewModel> {
          lrvShare = binding.lrvShare;
         mWaveView = binding.waveView;
         mTvSkin = binding.tvSkin;
+        mLlHistory = binding.llHistory;
+        mLlCollection = binding.llCollection;
     }
 
     @Override
@@ -83,6 +89,22 @@ public class MineFragment extends BaseFragment<BaseViewModel> {
             @Override
             public void onClick(View view) {
              changeSkin();
+            }
+        });
+        mLlHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance()
+                        .build("/center/HistoryActivity")
+                        .navigation();
+            }
+        });
+        mLlCollection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance()
+                        .build("/center/CollectionActivity")
+                        .navigation();
             }
         });
     }

@@ -2,6 +2,7 @@ package com.newscenter.first.ui;
 
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ViewDataBinding;
+import android.os.Bundle;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -17,7 +18,10 @@ import com.newscenter.first.util.Constants;
 import com.newscenter.first.viewmodel.base.BaseViewModel;
 import com.newscenter.first.views.MyWebView;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -33,7 +37,6 @@ public class NewsDetailActivity extends BaseActivity<BaseViewModel> {
     private MyWebView mMyWebView;
     private int rightCode = 0;//0标识未收藏
     private List<News> mNewsList = new ArrayList<>();
-    private News mNews;
 
     @Override
     public void initTitle() {
@@ -51,8 +54,10 @@ public class NewsDetailActivity extends BaseActivity<BaseViewModel> {
 
     @Override
     public void initData(ViewModel baseViewModel) {
-        String url = getIntent().getStringExtra("url");
-        mMyWebView.setOpenUrl(url);
+        Bundle bundle_news = getIntent().getBundleExtra("bundle_news");
+        News news = (News) bundle_news.getSerializable("news");
+        addToHistory(news);
+        mMyWebView.setOpenUrl(news.getUrl());
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
@@ -60,14 +65,14 @@ public class NewsDetailActivity extends BaseActivity<BaseViewModel> {
                 if (rightCode == 1) {
                     rightCode = 0;
                     setRightTitleAndIcon("收藏", R.mipmap.iv_like_no);
-                    if(mNews != null){
-                        mNewsList.remove(mNews);
-                        CommonUtil.setShardPString(Constants.IS_COLLECTION,new Gson().toJson(mNewsList));
-                    }
+                    mNewsList.remove(news);
+                    CommonUtil.setShardPString(Constants.IS_COLLECTION,new Gson().toJson(mNewsList));
                 } else {
                     rightCode = 1;
-                    News news = new News();
-                    news.setUrl(url);
+                    Date date = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    String dateNowStr = sdf.format(date);
+                    news.setCollectDate(dateNowStr);
                     mNewsList.add(news);
                     CommonUtil.setShardPString(Constants.IS_COLLECTION,new Gson().toJson(mNewsList));
                     setRightTitleAndIcon("取消收藏", R.mipmap.iv_like_yes);
@@ -78,21 +83,41 @@ public class NewsDetailActivity extends BaseActivity<BaseViewModel> {
         String json = CommonUtil.getShardPStringByKey(Constants.IS_COLLECTION);
         if (!CommonUtil.isStrEmpty(json)){
             mNewsList = new Gson().fromJson(json, new TypeToken<List<News>>(){}.getType());
-            for (News news: mNewsList){
-                if (news.getUrl().equals(url)) {
+            for (News newsTemp: mNewsList){
+                if (news.getUrl().equals(newsTemp.getUrl())) {
                     rightCode = 1;
-                    mNews = news;
                     setRightTitleAndIcon("取消收藏", R.mipmap.iv_like_yes, listener);
                     return;
                 }
             }
         }
 
-
     }
 
     @Override
     protected void initEvent() {
 
+    }
+    public void addToHistory(News news){
+        List<News>newsList = new ArrayList<>();
+        String json = CommonUtil.getShardPStringByKey(Constants.IS_HISTORY);
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateNowStr = sdf.format(date);
+        news.setHistoryDate(dateNowStr);
+        if (CommonUtil.isStrEmpty(json)){
+            newsList.add(news);
+            CommonUtil.setShardPString(Constants.IS_HISTORY,new Gson().toJson(newsList));
+        }else {
+            newsList = new Gson().fromJson(json, new TypeToken<List<News>>() {}.getType());
+            for (News newsTemp:newsList){
+                if (newsTemp.getUrl().equals(news.getUrl())){
+                    return;
+                }
+            }
+            newsList.add(news);
+            CommonUtil.setShardPString(Constants.IS_HISTORY,new Gson().toJson(newsList));
+
+        }
     }
 }

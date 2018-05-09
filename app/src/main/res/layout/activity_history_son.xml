@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/white">
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        />
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="@dimen/font_normal"
+        android:lines="1"
+        android:layout_marginLeft="5dp"
+        android:text="向小布什扔鞋的那个小伙子，现在想当伊拉克总理"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"/>
+
+</LinearLayout>

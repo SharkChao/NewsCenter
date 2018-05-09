@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "mook.winning.com.newscenter"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -75,4 +75,7 @@ dependencies {
     implementation 'skin.support:skin-support-design:3.1.0-beta'            // skin-support-design material design 控件支持[可选]
     implementation 'skin.support:skin-support-cardview:3.1.0-beta'          // skin-support-cardview CardView 控件支持[可选]
     implementation 'skin.support:skin-support-constraint-layout:3.1.0-beta' // skin-support-constraint-layout ConstraintLayout 控件支持[可选]
+    implementation 'com.oushangfeng:PinnedSectionItemDecoration:1.2.4'
+    implementation 'com.carson_ho:SearchLayout:1.0.1'
+
 }

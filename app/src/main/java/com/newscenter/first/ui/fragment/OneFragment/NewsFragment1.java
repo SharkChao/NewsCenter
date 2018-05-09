@@ -130,9 +130,11 @@ public class NewsFragment1 extends BaseFragment<NewsViewModel> {
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("news",mAdapter.getData().get(position));
                 ARouter.getInstance()
                         .build("/center/NewsDetailActivity")
-                        .withString("url",mAdapter.getData().get(position).getUrl())
+                        .withBundle("bundle_news",bundle)
                         .navigation();
             }
         });

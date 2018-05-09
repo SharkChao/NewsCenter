@@ -135,6 +135,13 @@ public abstract class BaseActivity<T extends ViewModel> extends AppCompatActivit
             mLlRight.setOnClickListener(listener);
         }
     }
+    protected  void setRightTitle(String title){
+        if (title != null && !"".equalsIgnoreCase(title)){
+            mTvRight.setVisibility(View.VISIBLE);
+            mTvRight.setText(title);
+            mBtnRight.setVisibility(View.GONE);
+        }
+    }
     protected void setRightTitleAndIcon(String title, @DrawableRes int icon, View.OnClickListener listener){
         if (title != null && !"".equalsIgnoreCase(title)){
             mTvRight.setVisibility(View.VISIBLE);
