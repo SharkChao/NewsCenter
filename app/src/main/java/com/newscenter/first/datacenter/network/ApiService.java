@@ -1,9 +1,11 @@
 package com.newscenter.first.datacenter.network;
 
 
+import com.newscenter.first.model.FeedBack;
 import com.newscenter.first.model.GirlsData;
 import com.newscenter.first.model.HttpResult;
 import com.newscenter.first.model.News;
+import com.newscenter.first.model.SignEntity;
 import com.newscenter.first.model.User;
 
 import java.util.List;
@@ -37,4 +39,16 @@ public interface ApiService<T> {
 
     @GET("news")
     Flowable<HttpResult<List<News>>> getNewsData(@Query("type") String type,@Query("isrefresh")boolean isRefresh);
+
+    @GET("getSign")
+    Flowable<HttpResult<List<SignEntity>>> getSignData(@Query("user_name")String name);
+
+    @GET("setSign")
+    Flowable<HttpResult<List<SignEntity>>> setSignData(@Query("user_name")String name,@Query("date")String date);
+
+    @GET("getFeedbackList")
+    Flowable<HttpResult<List<FeedBack>>> getFeedbackListData(@Query("user_name")String name);
+
+    @GET("setFeedback")
+    Flowable<HttpResult> setFeedbackData(@Query("user_name") String username,@Query("content")String content);
 }

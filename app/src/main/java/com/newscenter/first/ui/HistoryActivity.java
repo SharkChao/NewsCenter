@@ -2,6 +2,7 @@ package com.newscenter.first.ui;
 
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ViewDataBinding;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -152,6 +155,23 @@ public class HistoryActivity extends BaseActivity<BaseViewModel> {
                 son.setChecked(true);
                 tvDelete.setText("删除("+count+")");
                 tvDelete.setTextColor(getResources().getColor(R.color.white));
+                if (!mAdapter.isChange()){
+                    String json = CommonUtil.getShardPStringByKey(Constants.IS_HISTORY);
+                    List<News>newsList = new Gson().fromJson(json,new TypeToken<List<News>>(){}.getType());
+                    for (News news: newsList){
+                        if (news.getTitle().equals(son.getTitle())){
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("news",news);
+                            ARouter.getInstance()
+                                    .build("/center/NewsDetailActivity")
+                                    .withBundle("bundle_news",bundle)
+                                    .navigation();
+                            return;
+                        }
+                    }
+                    Toast.makeText(HistoryActivity.this, "出现未知错误!", Toast.LENGTH_SHORT).show();
+
+                }
             }
 
             @Override
@@ -163,6 +183,7 @@ public class HistoryActivity extends BaseActivity<BaseViewModel> {
                 tvDelete.setTextColor(getResources().getColor(R.color.white));
             }
         });
+
         tvAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -198,11 +219,17 @@ public class HistoryActivity extends BaseActivity<BaseViewModel> {
                 tvDelete.setText("删除");
                 tvDelete.setTextColor(getResources().getColor(R.color.gray_2));
                 CommonUtil.setShardPString(Constants.IS_HISTORY,new Gson().toJson(mNewsJson));
-                HistoryNewsParent parent = (HistoryNewsParent) mNewsList.get(0);
-                if (parent.getSubItems() == null || parent.getSubItems().size() == 0){
+                if (mNewsList.size() > 0){
+                    HistoryNewsParent parent = (HistoryNewsParent) mNewsList.get(0);
+                    if (parent.getSubItems() == null || parent.getSubItems().size() == 0){
+                        mNewsList.clear();
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }else {
                     mNewsList.clear();
                     mAdapter.notifyDataSetChanged();
                 }
+
             }
         });
     }

@@ -1,12 +1,15 @@
 package com.newscenter.first.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String u_name;
     private String u_password;
-    private String personName;
-    private String jobTitle;
-    private String picUrl;
-
+    private String xm;
+    private String job_title;
+    private String pic_url;
+    private String sex;//性别
+    private String phone_number;//用户手机号
     public String getU_name() {
         return u_name;
     }
@@ -23,27 +26,43 @@ public class User {
         this.u_password = u_password;
     }
 
-    public String getPersonName() {
-        return personName;
+    public String getXm() {
+        return xm;
     }
 
-    public void setPersonName(String personName) {
-        this.personName = personName;
+    public void setXm(String xm) {
+        this.xm = xm;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
+    public String getJob_title() {
+        return job_title;
     }
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
+    public void setJob_title(String job_title) {
+        this.job_title = job_title;
     }
 
-    public String getPicUrl() {
-        return picUrl;
+    public String getPic_url() {
+        return pic_url;
     }
 
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
+    public void setPic_url(String pic_url) {
+        this.pic_url = pic_url;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
     }
 }

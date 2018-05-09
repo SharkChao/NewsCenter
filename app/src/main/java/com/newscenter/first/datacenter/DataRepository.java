@@ -4,7 +4,9 @@ package com.newscenter.first.datacenter;
 import com.newscenter.first.datacenter.network.ApiService;
 import com.newscenter.first.datacenter.network.ApiServiceModule;
 import com.newscenter.first.datacenter.network.HttpResultFunc;
+import com.newscenter.first.model.FeedBack;
 import com.newscenter.first.model.News;
+import com.newscenter.first.model.SignEntity;
 import com.newscenter.first.model.User;
 import com.newscenter.first.util.GsonHelper;
 import com.newscenter.first.util.SwitchSchedulers;
@@ -55,5 +57,23 @@ public class DataRepository {
                 .map(new HttpResultFunc<List<News>>());
     }
 
-
+    public static Flowable getSignData(String name){
+        return sService.getSignData(name)
+                .compose(SwitchSchedulers.applySchedulers())
+                .map(new HttpResultFunc<List<SignEntity>>());
+    }
+    public static Flowable setSignData(String name,String date){
+        return sService.setSignData(name,date)
+                .compose(SwitchSchedulers.applySchedulers())
+                 .map(new HttpResultFunc<List<SignEntity>>());
+    }
+    public static Flowable getFeedbackListData(String name){
+        return sService.getFeedbackListData(name)
+                .compose(SwitchSchedulers.applySchedulers())
+                .map(new HttpResultFunc<List<FeedBack>>());
+    }
+    public static Flowable setFeedbackNewData(String name,String content){
+        return sService.setFeedbackData(name,content)
+                .compose(SwitchSchedulers.applySchedulers());
+    }
 }

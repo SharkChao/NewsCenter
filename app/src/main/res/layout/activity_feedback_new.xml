@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey_normal_bg"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/spacing_10"
+            android:padding="@dimen/spacing_10"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="我的反馈"
+                android:padding="@dimen/spacing_10"
+                android:textColor="@color/font_black"
+                android:gravity="center_horizontal"/>
+            <EditText
+                android:id="@+id/etFeedBack"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                style="?android:attr/textViewStyle"
+                android:padding="@dimen/spacing_10"
+                android:background="@color/gray_4"
+                android:gravity="top"
+                android:hint="请输入反馈信息(字数最多为300字)"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvFeedBack"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_normal"
+            android:layout_margin="@dimen/spacing_10"
+            android:padding="@dimen/spacing_10"
+            android:background="@color/white"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="取消"
+                android:textColor="@color/font_gray"
+                android:textSize="@dimen/font_small"
+                android:background="@color/white"
+                android:gravity="center"/>
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="提交"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_small"
+                android:background="@color/colorPrimary"
+                android:gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

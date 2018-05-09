@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:shadowColor="@color/colorPrimary"
         android:gravity="center_vertical"
+        android:clickable="false"
         android:layout_marginLeft="5dp"
         />
     <TextView

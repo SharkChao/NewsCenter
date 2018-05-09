@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.newscenter.first.R;
 import com.newscenter.first.annotation.ContentView;
+import com.newscenter.first.util.ActivityStack;
 import com.newscenter.first.util.CommonUtil;
 import com.newscenter.first.util.DensityUtil;
 import com.newscenter.first.viewmodel.base.BaseViewModel;
@@ -58,7 +59,7 @@ public abstract class BaseActivity<T extends ViewModel> extends AppCompatActivit
         setToolbar();
         View contentView = findViewById(R.id.content);
         ViewDataBinding viewDataBinding = DataBindingUtil.inflate(LayoutInflater.from(this),getContentView(),(ViewGroup) contentView,true);
-
+        ActivityStack.create().add(this);
         viewModel = ViewModelProviders.of(this).get(getTClass());
 
         if (viewModel instanceof BaseViewModel){
@@ -258,6 +259,11 @@ public abstract class BaseActivity<T extends ViewModel> extends AppCompatActivit
         CommonUtil.showSnackBar(mBtnLeft,throwable.getMessage());
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityStack.create().remove(this);
+    }
 }
 
 

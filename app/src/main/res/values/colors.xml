@@ -35,14 +35,16 @@
     <color name="app_item_press_colors">#b3b3b3</color>
 
     <color name="bottom_text_normal_colors">#6B6B6B</color>
-
+    <color name="font_gray2">#989898</color>
 
 
     <color name="btn_complete_normal_colors">#CF2A27</color>
 
     <color name="btn_complete_press_colors">#BE0F0F</color>
 
-
+    <color name="red1">#FF2E2E</color>
+    <color name="red2">#DE001F</color>
+    <color name="red3">#F60413</color>
 
     <color name="gray_1">#7e7d7d</color>
 
@@ -57,7 +59,7 @@
     <color name="gray_dark">#FF404040</color>
 
     <color name="font_gray">#bfbfbf</color>
-
+    <color name="font_black">#333333</color>
 
 
     <color name="description_gray">#666666</color>

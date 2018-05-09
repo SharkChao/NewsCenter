@@ -21,5 +21,6 @@ public class Constants {
     public static final String IS_NIGHT = "is_night";
     //收藏文章的列表
     public static final String IS_COLLECTION = "is_collection";
+    public static final String IS_SIGN = "is_sign";
     public static final String IS_HISTORY = "is_history";
 }

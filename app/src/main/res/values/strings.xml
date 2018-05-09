@@ -6,6 +6,6 @@
     <string name="toast_error_not_have_network">当前没有网络，请检测设备后重试!</string>
     <string name="toast_error_server">抱歉！服务器出错了!</string>
     <string name="toast_error_unknown">抱歉！系统出现未知错误!</string>
-
+    <string name="about_copyright">\nCopyright ©2018个人项目\nMy First Project Technology Group Co.,Ltd.</string>
     <string name="bottom_behavior">com.newscenter.first.views.BottomBehavior</string>
 </resources>

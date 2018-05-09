@@ -38,6 +38,7 @@
                         android:layout_alignParentLeft="true"
                         android:background="@drawable/lx_top_rect_circle"/>
                     <TextView
+                        android:id="@+id/tvSign"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="签到"
@@ -105,6 +106,7 @@
                     android:orientation="vertical"
                     android:gravity="center">
                     <TextView
+                        android:id="@+id/tvCollection"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
@@ -127,6 +129,7 @@
                     android:orientation="vertical"
                     android:gravity="center">
                     <TextView
+                        android:id="@+id/tvHistory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
@@ -148,6 +151,7 @@
                     android:orientation="vertical"
                     android:gravity="center">
                     <TextView
+                        android:id="@+id/tvGT"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"

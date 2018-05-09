@@ -29,6 +29,7 @@
                 android:shadowColor="@color/colorPrimary"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="5dp"
+                android:clickable="false"
                 />
             <TextView
                 android:id="@+id/tvTitle"
