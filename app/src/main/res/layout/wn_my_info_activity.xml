@@ -9,6 +9,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/ivUserAvatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            app:roundAsCircle="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            app:placeholderImage="@mipmap/wn_iv_icon_doctor"
+            app:placeholderImageScaleType="fitXY"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_10"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
@@ -102,7 +120,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="职位"
+            android:text="头衔"
             android:layout_marginLeft="@dimen/spacing_20"
             android:textSize="@dimen/font_smaller"
             android:textColor="@color/gray_2"/>

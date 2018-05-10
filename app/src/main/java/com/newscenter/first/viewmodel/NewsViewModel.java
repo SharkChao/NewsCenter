@@ -17,9 +17,13 @@ import com.newscenter.first.viewmodel.base.BaseViewModel;
 import com.newscenter.first.viewmodel.base.CommonDisposableSubscriber;
 
 import java.util.List;
+import java.util.Map;
+
+import okhttp3.RequestBody;
 
 public class NewsViewModel extends BaseViewModel<List<News>>{
     public MutableLiveData<List<News>> newsData = new MutableLiveData<>();
+    public MutableLiveData<HttpResult> setNewsData = new MutableLiveData<>();
     public NewsViewModel(@NonNull Application application) {
         super(application);
     }
@@ -42,5 +46,15 @@ public class NewsViewModel extends BaseViewModel<List<News>>{
         return newsData;
     }
 
+    public LiveData<HttpResult> setNewsController(Map<String, RequestBody> news) {
+        DataRepository.setNewsData(news)
+                .subscribeWith(new CommonDisposableSubscriber<HttpResult>(setNewsData,errorObservableData,""));
+        return setNewsData;
+    }
 
+    public LiveData<HttpResult> updateNewsControllser(Map<String, RequestBody> news) {
+        DataRepository.updateNewsData(news)
+                .subscribeWith(new CommonDisposableSubscriber<HttpResult>(setNewsData,errorObservableData,""));
+        return setNewsData;
+    }
 }

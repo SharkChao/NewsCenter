@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.newscenter.first.R;
@@ -25,6 +27,7 @@ import com.newscenter.first.annotation.ContentView;
 import com.newscenter.first.base.BaseFragment;
 import com.newscenter.first.databinding.FragmentMineBinding;
 import com.newscenter.first.model.News;
+import com.newscenter.first.model.User;
 import com.newscenter.first.ui.MyInfoActivity;
 import com.newscenter.first.ui.SettingActivity;
 import com.newscenter.first.util.CommonUtil;
@@ -65,6 +68,10 @@ public class MineFragment extends BaseFragment<BaseViewModel> {
     private TextView tvHistory;
     private TextView tvGT;
     private RelativeLayout leftInfo;
+    private User mUser;
+    private TextView mTvUserName;
+    private TextView mTvLevel;
+    private SimpleDraweeView mIvUserAvatar;
 
 
     @Override
@@ -92,6 +99,9 @@ public class MineFragment extends BaseFragment<BaseViewModel> {
         tvHistory = binding.tvHistory;
         tvGT = binding.tvGT;
         leftInfo = binding.leftInfo;
+        mIvUserAvatar = binding.ivUserAvatar;
+        mTvUserName = binding.tvUserName;
+        mTvLevel = binding.tvLevel;
     }
 
     @Override
@@ -304,6 +314,16 @@ public class MineFragment extends BaseFragment<BaseViewModel> {
                 tvHistory.setText(historyList.size()+"");
             }
         }
+        String json = CommonUtil.getShardPStringByKey(Constants.IS_LOGIN);
+        if (!CommonUtil.isStrEmpty(json)){
+            mUser = new Gson().fromJson(json,User.class);
+            mTvUserName.setText(CommonUtil.isStrEmpty(mUser.getXm())?"昵称:暂无":mUser.getXm());
+            mTvLevel.setText(CommonUtil.isStrEmpty(mUser.getJob_title())?"头衔:暂无":mUser.getJob_title());
+           if (!CommonUtil.isStrEmpty(mUser.getPic_url())){
+               String pic_url = mUser.getPic_url();
+               mIvUserAvatar.setImageURI(Uri.parse(Constants.BASE_URL+pic_url));
+           }
+        }
     }
 
     @Override
@@ -343,4 +363,5 @@ public class MineFragment extends BaseFragment<BaseViewModel> {
             SkinCompatManager.getInstance().restoreDefaultTheme();
         }
     }
+
 }

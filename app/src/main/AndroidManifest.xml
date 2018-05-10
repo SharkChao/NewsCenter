@@ -90,6 +90,12 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".ui.NewsEditActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+        </activity>
         <activity android:name="me.shaohui.shareutil._ShareActivity"/>
 
         <activity-alias

@@ -19,6 +19,7 @@ import com.newscenter.first.ui.fragment.ConnectFragment;
 import com.newscenter.first.ui.fragment.MineFragment;
 import com.newscenter.first.ui.fragment.NewsFragment;
 import com.newscenter.first.viewmodel.base.BaseViewModel;
+import com.newscenter.first.views.PopMenuView;
 
 @Route(path = "/center/HomeActivity")
 @ContentView(R.layout.activity_home)
@@ -30,6 +31,7 @@ public class HomeActivity extends BaseActivity<BaseViewModel> {
     private NewsFragment mNewsFragment;
     private ConnectFragment mConnectFragment;
     private MineFragment mMineFragment;
+    private PopMenuView mPopMenuView;
 
     @Override
     public void initTitle() {
@@ -61,7 +63,7 @@ public class HomeActivity extends BaseActivity<BaseViewModel> {
         mFragmentManager.beginTransaction().show(mNewsFragment).hide(mConnectFragment).hide(mMineFragment).commit();
         mBottomBar
                 .addItem(new BottomNavigationItem(R.mipmap.iv_news, "新闻").setActiveColorResource(R.color.colorPrimary))
-                .addItem(new BottomNavigationItem(R.mipmap.iv_group, "交流").setActiveColorResource(R.color.colorPrimary))
+                .addItem(new BottomNavigationItem(R.mipmap.iv_group, "发布").setActiveColorResource(R.color.colorPrimary))
                 .addItem(new BottomNavigationItem(R.mipmap.iv_mine, "我的").setActiveColorResource(R.color.colorPrimary))//依次添加item,分别icon和名称
                 .setFirstSelectedPosition(0)//设置默认选择item
                 .initialise();//初始化
@@ -70,14 +72,15 @@ public class HomeActivity extends BaseActivity<BaseViewModel> {
 
     @Override
     protected void initEvent() {
+        mPopMenuView = PopMenuView.getInstance();
         mBottomBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int position) {
                 if (position == 0){
                     mFragmentManager.beginTransaction().show(mNewsFragment).hide(mConnectFragment).hide(mMineFragment).commit();
                 }else if (position == 1){
-                    mFragmentManager.beginTransaction().show(mConnectFragment).hide(mNewsFragment).hide(mMineFragment).commit();
-
+//                    mFragmentManager.beginTransaction().show(mConnectFragment).hide(mNewsFragment).hide(mMineFragment).commit();
+                    mPopMenuView.show(HomeActivity.this,getWindow().getDecorView());
                 }else if (position == 2){
                     mFragmentManager.beginTransaction().show(mMineFragment).hide(mNewsFragment).hide(mConnectFragment).commit();
                 }
@@ -90,7 +93,9 @@ public class HomeActivity extends BaseActivity<BaseViewModel> {
 
             @Override
             public void onTabReselected(int position) {
-
+                if (position == 1){
+                    mPopMenuView.show(HomeActivity.this,getWindow().getDecorView());
+                }
             }
         });
     }

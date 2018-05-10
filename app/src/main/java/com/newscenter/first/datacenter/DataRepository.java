@@ -17,6 +17,7 @@ import java.util.Map;
 
 import io.reactivex.Flowable;
 import io.reactivex.functions.Function;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
 /**
@@ -74,6 +75,19 @@ public class DataRepository {
     }
     public static Flowable setFeedbackNewData(String name,String content){
         return sService.setFeedbackData(name,content)
+                .compose(SwitchSchedulers.applySchedulers());
+    }
+    public static Flowable saveMyInfoData(Map<String, RequestBody> image){
+        return sService.saveEdit(image)
+                .compose(SwitchSchedulers.applySchedulers())
+                .map(new HttpResultFunc<User>());
+    }
+    public static Flowable setNewsData(Map<String,RequestBody> news){
+        return sService.setNewsData(news)
+                .compose(SwitchSchedulers.applySchedulers());
+    }
+    public static Flowable updateNewsData(Map<String,RequestBody> news){
+        return sService.updateNewsData(news)
                 .compose(SwitchSchedulers.applySchedulers());
     }
 }

@@ -9,16 +9,22 @@ import com.newscenter.first.model.SignEntity;
 import com.newscenter.first.model.User;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Flowable;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
+import rx.Observable;
 
 /**
  * Created by yuzhijun on 2018/4/2.
@@ -33,6 +39,10 @@ public interface ApiService<T> {
 
     @POST("user/login")
     Flowable<HttpResult<User>> getLoginData(@Body User user);
+
+    @Multipart
+    @POST("user/edit")
+    Flowable<HttpResult<User>> saveEdit(@PartMap Map<String, RequestBody> images);
 
     @POST("user/register")
     Flowable<HttpResult<User>> getRegisterData(@Body User user);
@@ -51,4 +61,12 @@ public interface ApiService<T> {
 
     @GET("setFeedback")
     Flowable<HttpResult> setFeedbackData(@Query("user_name") String username,@Query("content")String content);
+
+    @Multipart
+    @POST("editNews")
+    Flowable<HttpResult> setNewsData(@PartMap Map<String,RequestBody> news);
+
+    @Multipart
+    @POST("updateNews")
+    Flowable<HttpResult> updateNewsData(@PartMap Map<String,RequestBody> news);
 }

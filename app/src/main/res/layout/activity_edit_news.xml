@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+    </data>
+    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:overScrollMode="never">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_10"
+                android:layout_marginRight="@dimen/spacing_10"
+                android:layout_marginTop="@dimen/spacing_10"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="6dp"
+                    android:paddingTop="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="新闻标题"
+                        android:textSize="@dimen/font_smaller"
+                        android:textColor="@color/black"/>
+
+
+                    <EditText
+                        android:id="@+id/tvTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="新闻标题"
+                        android:hint="请输入新闻标题"
+                        android:layout_marginTop="@dimen/spacing_10"
+                        android:paddingTop="@dimen/spacing_8"
+                        android:paddingBottom="@dimen/spacing_8"
+                        android:paddingLeft="@dimen/spacing_16"
+                        android:paddingRight="@dimen/spacing_16"
+                        android:background="@drawable/lx_drop_down_backgound"
+                        android:textSize="@dimen/font_smaller"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="新闻类型"
+                        android:textSize="@dimen/font_smaller"
+                        android:textColor="@color/black"/>
+
+
+                    <com.newscenter.first.util.DropDownView
+                        android:id="@+id/tvType"
+                        android:layout_width="match_parent"
+                        android:layout_height="34dp"
+                        android:layout_marginTop="@dimen/spacing_10">
+                    </com.newscenter.first.util.DropDownView>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="新闻来源"
+                        android:layout_marginTop="@dimen/spacing_10"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_smaller"/>
+
+                    <EditText
+                        android:id="@+id/tvFrom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="新闻来源"
+                        android:hint="请输入新闻来源"
+                        android:layout_marginTop="@dimen/spacing_10"
+                        android:paddingTop="@dimen/spacing_8"
+                        android:paddingBottom="@dimen/spacing_8"
+                        android:paddingLeft="@dimen/spacing_16"
+                        android:paddingRight="@dimen/spacing_16"
+                        android:background="@drawable/lx_drop_down_backgound"
+                        android:textSize="@dimen/font_smaller"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="发布时间"
+                        android:layout_marginTop="@dimen/spacing_10"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_smaller"/>
+
+                    <EditText
+                        android:id="@+id/tvDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="发布时间"
+                        android:hint="请选择发布时间"
+                        android:layout_marginTop="@dimen/spacing_10"
+                        android:paddingTop="@dimen/spacing_8"
+                        android:paddingBottom="@dimen/spacing_8"
+                        android:paddingLeft="@dimen/spacing_16"
+                        android:paddingRight="@dimen/spacing_16"
+                        android:background="@drawable/lx_drop_down_backgound"
+                        android:textSize="@dimen/font_smaller"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_10"
+                        android:text="新闻详情网址"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_smaller"/>
+
+                    <EditText
+                        android:id="@+id/tvUrl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="新闻详情网址"
+                        android:hint="请输入新闻网址"
+                        android:layout_marginTop="@dimen/spacing_10"
+                        android:paddingTop="@dimen/spacing_8"
+                        android:paddingBottom="@dimen/spacing_8"
+                        android:paddingLeft="@dimen/spacing_16"
+                        android:paddingRight="@dimen/spacing_16"
+                        android:background="@drawable/lx_drop_down_backgound"
+                        android:textSize="@dimen/font_smaller"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_10"
+                        android:text="预览照片"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_smaller"/>
+
+                  <LinearLayout
+                      android:layout_marginTop="10dp"
+                      android:layout_width="match_parent"
+                      android:layout_height="100dp"
+                      android:orientation="horizontal">
+                      <com.facebook.drawee.view.SimpleDraweeView
+                          android:id="@+id/tvPic1"
+                          android:layout_width="80dp"
+                          android:layout_height="80dp"
+                          android:layout_centerHorizontal="true"
+                          android:layout_marginTop="20dp"
+                          app:roundAsCircle="false"
+                          android:layout_weight="1"
+                          android:layout_centerInParent="true"
+                          android:layout_gravity="center"
+                          android:layout_marginBottom="20dp"
+                          app:placeholderImage="@mipmap/iv_crame"
+                          app:placeholderImageScaleType="fitXY"/>
+                      <com.facebook.drawee.view.SimpleDraweeView
+                          android:id="@+id/tvPic2"
+                          android:layout_width="80dp"
+                          android:layout_height="80dp"
+                          android:layout_weight="1"
+                          android:layout_centerHorizontal="true"
+                          android:layout_marginTop="20dp"
+                          app:roundAsCircle="false"
+                          android:layout_centerInParent="true"
+                          android:layout_gravity="center"
+                          android:layout_marginBottom="20dp"
+                          app:placeholderImage="@mipmap/iv_crame"
+                          app:placeholderImageScaleType="fitXY"/>
+                      <com.facebook.drawee.view.SimpleDraweeView
+                          android:id="@+id/tvPic3"
+                          android:layout_width="80dp"
+                          android:layout_height="80dp"
+                          android:layout_weight="1"
+                          android:layout_centerHorizontal="true"
+                          android:layout_marginTop="20dp"
+                          app:roundAsCircle="false"
+                          android:layout_centerInParent="true"
+                          android:layout_gravity="center"
+                          android:layout_marginBottom="20dp"
+                          app:placeholderImage="@mipmap/iv_crame"
+                          app:placeholderImageScaleType="fitXY"/>
+                  </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp">
+                    <Button
+                        android:id="@+id/btnNew"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="发布新闻"
+                        android:layout_marginLeft="@dimen/spacing_10"
+                        android:layout_marginRight="@dimen/spacing_10"
+                        android:layout_marginBottom="@dimen/spacing_30"
+                        android:textColor="@color/white"
+                        android:background="@drawable/btn_color_accent_red_select"
+                        android:gravity="center"/>
+                </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</layout>
