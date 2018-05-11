@@ -90,4 +90,8 @@ public class DataRepository {
         return sService.updateNewsData(news)
                 .compose(SwitchSchedulers.applySchedulers());
     }
+    public static Flowable deleteNewsData(String url){
+        return sService.deleteNews(url)
+                .compose(SwitchSchedulers.applySchedulers());
+    }
 }

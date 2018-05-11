@@ -69,4 +69,7 @@ public interface ApiService<T> {
     @Multipart
     @POST("updateNews")
     Flowable<HttpResult> updateNewsData(@PartMap Map<String,RequestBody> news);
+
+    @GET("deleteNews")
+    Flowable<HttpResult> deleteNews(@Query("url")String name);
 }

@@ -15,9 +15,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bumptech.glide.Glide;
 import com.facebook.common.util.UriUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
@@ -39,17 +41,13 @@ import com.newscenter.first.model.HttpResult;
 import com.newscenter.first.model.KeyValueObject;
 import com.newscenter.first.model.News;
 import com.newscenter.first.util.CommonUtil;
-import com.newscenter.first.util.Constants;
 import com.newscenter.first.util.DropDownView;
 import com.newscenter.first.util.FileRequestBody;
 import com.newscenter.first.util.RetrofitCallBack;
-import com.newscenter.first.util.YearMonthDatePickerDialog;
 import com.newscenter.first.viewmodel.NewsViewModel;
-import com.newscenter.first.viewmodel.base.BaseViewModel;
 import com.newscenter.first.views.PhotoPopupWindow;
 
 import java.io.File;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
@@ -70,9 +68,9 @@ public class NewsEditActivity extends BaseActivity<NewsViewModel> implements Tak
     private EditText mTvFrom;
     private EditText mTvDate;
     private EditText mTvUrl;
-    private SimpleDraweeView mTvPic1;
-    private SimpleDraweeView mTvPic2;
-    private SimpleDraweeView mTvPic3;
+    private ImageView mTvPic1;
+    private ImageView mTvPic2;
+    private ImageView mTvPic3;
     private Button mBtnNew;
     private NewsViewModel mViewModel;
     private PhotoPopupWindow mPhotoPopupWindow;
@@ -84,7 +82,10 @@ public class NewsEditActivity extends BaseActivity<NewsViewModel> implements Tak
     private String picUrl2;
     private String picUrl3;
     private DropDownView mTvType;
+    private DropDownView mTvTitle1;
     private int mType;
+    private List<News> mNewsList;
+    private News newsTemp;
 
     @Override
     public void initTitle() {
@@ -103,6 +104,7 @@ public class NewsEditActivity extends BaseActivity<NewsViewModel> implements Tak
         mTvPic3 = binding.tvPic3;
         mBtnNew = binding.btnNew;
         mTvType = binding.tvType;
+        mTvTitle1 = binding.tvTitle1;
     }
 
     @Override
@@ -112,43 +114,56 @@ public class NewsEditActivity extends BaseActivity<NewsViewModel> implements Tak
             @Override
             public void onChanged(@Nullable HttpResult httpResult) {
                 if (httpResult != null && httpResult.getCode() > 0){
-                    Toast.makeText(NewsEditActivity.this, "发布新闻成功!", Toast.LENGTH_SHORT).show();
+                    String warn = "";
+                    if (mType == 0){
+                        warn = "发布新闻成功!";
+                    }else if (mType == 1){
+                        warn = "修改新闻成功!";
+                    }else if (mType == 2){
+                        warn = "删除新闻成功!";
+                    }
+                    Toast.makeText(NewsEditActivity.this, warn, Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
         });
          setNewsType();
         mType = getIntent().getIntExtra("type", 0);
+        setViewClick(mType!=2);
         if (mType == 0){
             setCenterTitle("发布新闻");
             mBtnNew.setText("发布新闻");
+            mTvTitle.setVisibility(View.VISIBLE);
+            mTvTitle1.setVisibility(View.GONE);
         }else if (mType == 1){
             setCenterTitle("修改新闻");
             mBtnNew.setText("修改新闻");
-            String top = CommonUtil.getShardPStringByKey("top");
-            if (!CommonUtil.isStrEmpty(top)){
-                List<News>newsList = new Gson().fromJson(top,new TypeToken<List<News>>(){}.getType());
-                if (newsList != null && newsList.size() > 0){
-                    News news = newsList.get(0);
-                    mTvTitle.setText(news.getTitle());
-                    mTvFrom.setText(news.getAuthor_name());
-                    mTvDate.setText(news.getDate());
-                    mTvUrl.setText(news.getUrl());
-                    if (!CommonUtil.isStrEmpty(news.getThumbnail_pic_s())){
-                        mTvPic1.setImageURI(Uri.parse(news.getThumbnail_pic_s()));
-                    }
-                    if (!CommonUtil.isStrEmpty(news.getThumbnail_pic_s02())){
-                        mTvPic2.setImageURI(Uri.parse(news.getThumbnail_pic_s02()));
-                    }
-                    if (!CommonUtil.isStrEmpty(news.getThumbnail_pic_s03())){
-                        mTvPic3.setImageURI(news.getThumbnail_pic_s03());
-                    }
-                }
-            }
+            mTvTitle.setVisibility(View.GONE);
+            mTvTitle1.setVisibility(View.VISIBLE);
+             setInitData("top",0);
         }else if (mType == 2){
             setCenterTitle("删除新闻");
             mBtnNew.setText("删除新闻");
+            mTvTitle.setVisibility(View.GONE);
+            mTvTitle1.setVisibility(View.VISIBLE);
+            setInitData("top",0);
         }
+    }
+
+    private void setViewClick(boolean b) {
+        mTvTitle1.setClickables(b);
+        mTvTitle.setFocusable(b);
+        mTvTitle.setFocusableInTouchMode(b);
+        mTvPic1.setClickable(b);
+        mTvPic2.setClickable(b);
+        mTvPic3.setClickable(b);
+        mTvUrl.setFocusable(mType == 0);
+        mTvUrl.setFocusableInTouchMode(mType == 0);
+        mTvDate.setFocusable(b);
+        mTvDate.setFocusableInTouchMode(b);
+        mTvFrom.setFocusable(b);
+        mTvFrom.setFocusableInTouchMode(b);
+
     }
 
     private void setNewsType() {
@@ -173,6 +188,34 @@ public class NewsEditActivity extends BaseActivity<NewsViewModel> implements Tak
         list.add(k9);
         mTvType.setClickables(true);
         mTvType.setList(list);
+    }
+    public void setInitData(String type,int position){
+        String top = CommonUtil.getShardPStringByKey(type);
+        if (!CommonUtil.isStrEmpty(top)){
+            mNewsList = new Gson().fromJson(top,new TypeToken<List<News>>(){}.getType());
+            if (mNewsList != null && mNewsList.size() > 0){
+                News news = mNewsList.get(position);
+                newsTemp = news;
+                mTvTitle.setText(news.getTitle());
+                List<KeyValueObject>list = new ArrayList<>();
+                for (News temp: mNewsList){
+                    list.add(new KeyValueObject(temp.getUrl(),temp.getTitle()));
+                }
+                mTvTitle1.setList(list);
+                mTvFrom.setText(news.getAuthor_name());
+                mTvDate.setText(news.getDate());
+                mTvUrl.setText(news.getUrl());
+                if (!CommonUtil.isStrEmpty(news.getThumbnail_pic_s())){
+                    Glide.with(NewsEditActivity.this).load(news.getThumbnail_pic_s()).into(mTvPic1);
+                }
+                if (!CommonUtil.isStrEmpty(news.getThumbnail_pic_s02())){
+                    Glide.with(NewsEditActivity.this).load(news.getThumbnail_pic_s02()).into(mTvPic2);
+                }
+                if (!CommonUtil.isStrEmpty(news.getThumbnail_pic_s03())){
+                    Glide.with(NewsEditActivity.this).load(news.getThumbnail_pic_s03()).into(mTvPic3);
+                }
+            }
+        }
     }
 
     @Override
@@ -216,8 +259,13 @@ public class NewsEditActivity extends BaseActivity<NewsViewModel> implements Tak
                     news.setUrl(mTvUrl.getText().toString());
                     news.setAuthor_name(mTvFrom.getText().toString());
                     news.setDate(mTvDate.getText().toString());
+                    news.setThumbnail_pic_s(newsTemp.getThumbnail_pic_s());
+                    news.setThumbnail_pic_s02(newsTemp.getThumbnail_pic_s02());
+                    news.setThumbnail_pic_s03(newsTemp.getThumbnail_pic_s03());
                     news.setCategory(mTvType.getText().toString());
                     mViewModel.updateNewsControllser(setNewsMap(news));
+                }else if (mType == 2){
+                    mViewModel.deleteNewsController(mTvUrl.getText().toString());
                 }
 
             }
@@ -242,6 +290,27 @@ public class NewsEditActivity extends BaseActivity<NewsViewModel> implements Tak
             public void onClick(View view) {
                 position = 2;
                 showDialog();
+            }
+        });
+        mTvType.setOnItemClickListener(new DropDownView.OnItemSelectListener() {
+            @Override
+            public void onSelect(String value) {
+                KeyValueObject currentObject = mTvType.getCurrentObject();
+                String key = currentObject.getKey();
+                setInitData(key,0);
+            }
+        });
+        mTvTitle1.setOnItemClickListener(new DropDownView.OnItemSelectListener() {
+            @Override
+            public void onSelect(String value) {
+                if (mNewsList != null && mNewsList.size() > 0){
+                    for (int i = 0;i < mNewsList.size();i++){
+                        if (mNewsList.get(i).getTitle().equals(value)){
+                            setInitData(mTvType.getCurrentObject().getKey(),i);
+                        }
+                    }
+                }
+                mTvTitle1.setText(value);
             }
         });
     }

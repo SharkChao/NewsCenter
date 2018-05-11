@@ -29,14 +29,14 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/iv_draw1"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="说说"
+                android:text="发布"
                 android:textColor="#333333"
                 android:textSize="12sp"
                 />
@@ -56,14 +56,14 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/iv_draw2"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="照片"
+                android:text="修改"
                 android:textColor="#333333"
                 android:textSize="12sp"
                 />
@@ -83,14 +83,14 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/iv_draw3"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="视频"
+                android:text="删除"
                 android:textColor="#333333"
                 android:textSize="12sp"
                 />
@@ -109,14 +109,14 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/iv_draw4"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="直播"
+                android:text="更多"
                 android:textColor="#333333"
                 android:textSize="12sp"
                 />

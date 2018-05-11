@@ -36,6 +36,7 @@
                         android:textColor="@color/black"/>
 
 
+
                     <EditText
                         android:id="@+id/tvTitle"
                         android:layout_width="match_parent"
@@ -49,9 +50,17 @@
                         android:paddingRight="@dimen/spacing_16"
                         android:background="@drawable/lx_drop_down_backgound"
                         android:textSize="@dimen/font_smaller"
+                        android:visibility="visible"
                         android:textColor="@color/black"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center_horizontal"/>
+                    <com.newscenter.first.util.DropDownView
+                        android:id="@+id/tvTitle1"
+                        android:layout_width="match_parent"
+                        android:layout_height="34dp"
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/spacing_10">
+                    </com.newscenter.first.util.DropDownView>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -155,7 +164,7 @@
                       android:layout_width="match_parent"
                       android:layout_height="100dp"
                       android:orientation="horizontal">
-                      <com.facebook.drawee.view.SimpleDraweeView
+                      <ImageView
                           android:id="@+id/tvPic1"
                           android:layout_width="80dp"
                           android:layout_height="80dp"
@@ -163,12 +172,13 @@
                           android:layout_marginTop="20dp"
                           app:roundAsCircle="false"
                           android:layout_weight="1"
+                          android:src="@mipmap/iv_crame"
                           android:layout_centerInParent="true"
                           android:layout_gravity="center"
                           android:layout_marginBottom="20dp"
                           app:placeholderImage="@mipmap/iv_crame"
                           app:placeholderImageScaleType="fitXY"/>
-                      <com.facebook.drawee.view.SimpleDraweeView
+                      <ImageView
                           android:id="@+id/tvPic2"
                           android:layout_width="80dp"
                           android:layout_height="80dp"
@@ -176,12 +186,13 @@
                           android:layout_centerHorizontal="true"
                           android:layout_marginTop="20dp"
                           app:roundAsCircle="false"
+                          android:src="@mipmap/iv_crame"
                           android:layout_centerInParent="true"
                           android:layout_gravity="center"
                           android:layout_marginBottom="20dp"
                           app:placeholderImage="@mipmap/iv_crame"
                           app:placeholderImageScaleType="fitXY"/>
-                      <com.facebook.drawee.view.SimpleDraweeView
+                      <ImageView
                           android:id="@+id/tvPic3"
                           android:layout_width="80dp"
                           android:layout_height="80dp"
@@ -189,6 +200,7 @@
                           android:layout_centerHorizontal="true"
                           android:layout_marginTop="20dp"
                           app:roundAsCircle="false"
+                          android:src="@mipmap/iv_crame"
                           android:layout_centerInParent="true"
                           android:layout_gravity="center"
                           android:layout_marginBottom="20dp"

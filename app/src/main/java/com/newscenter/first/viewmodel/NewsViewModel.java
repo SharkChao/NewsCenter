@@ -57,4 +57,9 @@ public class NewsViewModel extends BaseViewModel<List<News>>{
                 .subscribeWith(new CommonDisposableSubscriber<HttpResult>(setNewsData,errorObservableData,""));
         return setNewsData;
     }
+    public LiveData<HttpResult> deleteNewsController(String url) {
+        DataRepository.deleteNewsData(url)
+                .subscribeWith(new CommonDisposableSubscriber<HttpResult>(setNewsData,errorObservableData,""));
+        return setNewsData;
+    }
 }

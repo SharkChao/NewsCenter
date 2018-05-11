@@ -142,6 +142,8 @@ public class PopMenuView {
                            .build("/center/NewsEditActivity")
                            .withInt("type",2)
                            .navigation();
+               }else if (index == 4){
+                   Toast.makeText(context, "敬请期待", Toast.LENGTH_SHORT).show();
                }
                 closePopupWindowAction();
             }
