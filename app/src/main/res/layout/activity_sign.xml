@@ -19,7 +19,6 @@
             android:padding="10dp"
             android:gravity="center"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/font_large"
-            android:text="您已累计签到10天"/>
+            android:textSize="@dimen/font_large" />
     </LinearLayout>
 </layout>

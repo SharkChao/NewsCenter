@@ -151,7 +151,7 @@ public class NewsEditActivity extends BaseActivity<NewsViewModel> implements Tak
     }
 
     private void setViewClick(boolean b) {
-        mTvTitle1.setClickables(b);
+        mTvTitle1.setClickables(true);
         mTvTitle.setFocusable(b);
         mTvTitle.setFocusableInTouchMode(b);
         mTvPic1.setClickable(b);

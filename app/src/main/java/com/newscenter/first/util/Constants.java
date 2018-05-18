@@ -5,8 +5,11 @@ package com.newscenter.first.util;
  */
 public class Constants {
     public static final String PATH_URL = "/Path";
-    public static final String BASE_URL =  "http://172.16.75.58:8088";
+//    public static final String BASE_URL =  "http://172.16.75.58:8088";
+//    public static final String BASE_URL =  "http://192.168.0.105:8081";
 //    public static final String BASE_URL =  "http://192.168.43.133:8088";
+//    public static final String BASE_URL =  "http://192.168.5.115:8081";
+    public static final String BASE_URL =  "http://192.168.43.248:8082";
     public static final String GIRLS_URL = "api/data/%E7%A6%8F%E5%88%A9/20/{index}/"+PATH_URL;
 
     public class HttpCode {
